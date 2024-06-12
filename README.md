@@ -1,34 +1,37 @@
-# v4l2-video-control
-Controlling a Video Camera with v4l2 and OpenCV
+# frame-capture
 
-## Dependencies
-| Dependency      | Version  |
-| --------------- | -------- |
-| libv4l-dev      |          |
-| libyaml-cpp-dev |          |
-| OpenCV          | >=4.2.0  |
-| C++             | >=14     |
-| CMake           | >=3.12.0 |
+A tool for capturing frames from a camera, simplifying the process of collecting datasets.
 
-## Documentation Reference
-- [User Controls](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/control.html)
-- [Extended Controls](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/extended-controls.html)
+## Features
+- [x] **Dynamic Control:** Automatically gets control settings dynamically from the camera.
+- [x] **Save Camera Configuration:** Save configuration settings to YAML files for future use.
 
-## Build 
+## Usage
+#### Install Dependencies:
 ```bash
-git clone https://github.com/rlggyp/v4l2-video-control.git
-cd v4l2-video-control/v4l2
+sudo apt install libv4l-dev libyaml-cpp-dev libopencv-dev g++ gcc cmake make
+```
 
+#### Clone and Build the Program:
+```bash
+git clone https://github.com/rlggyp/frame-capture.git
+cd frame-capture
 mkdir build
 cd build
-cmake ..
+cmake ../src
 make
+```
 
-```
-## Usage
+#### Run the Program:
 ```bash
-./main <camera_id>
-```
+./frame_capture <camera_id> <output_directory>
+   ```
+|Key|Description|
+|---|---|
+|`s`| capture the current frame.|
+|`w`| write configuration settings to YAML file.|
+|`ESC`| exit the program.|
+
 ## Contributing
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
