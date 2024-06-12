@@ -16,7 +16,7 @@ namespace v4l2 {
 VideoControl::VideoControl(const std::string &config_path, const unsigned char camera_id) {
 	device_ = "/dev/video" + std::to_string(camera_id);
 	config_path_ = config_path;
-	window_name_ = "VideoControl";
+	window_name_ = "frame";
 
 	GetAvailableControls();
 	std::vector<Config> yaml_config = GetConfigFromYAMLFile();
