@@ -6,6 +6,8 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
+std::string GetCurrentTime();
+
 int main(const int argc, const char **argv) {
 	if (argc != 3) {
 		std::cerr << "usage: " << argv[0] << " <camera_id> <output_directory>" << std::endl;
@@ -46,9 +48,7 @@ int main(const int argc, const char **argv) {
 	while (key != kEscape) {
 		key = cv::waitKey(1);
 		if (key == kSaveFrame) {
-			// Save the current frame with a unique name
-			std::time_t now = std::time(0);
-			std::string filename = kOutputDirectory + "/frame_" + std::to_string(now) + ".jpg";
+			std::string filename = kOutputDirectory + "/frame_" + GetCurrentTime() + ".jpg";
 			cv::imwrite(filename, frame);
 			std::cout << "Frame saved as: " << filename << std::endl;
 		} else if (key == kWriteConfig) {
@@ -64,4 +64,15 @@ int main(const int argc, const char **argv) {
 	cv::destroyAllWindows();
 	
 	return 0;
+}
+
+std::string GetCurrentTime() {
+	auto now = std::chrono::system_clock::now();
+	auto in_time_t = std::chrono::system_clock::to_time_t(now);
+	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+	
+	std::stringstream ss;
+	ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d_%H-%M-%S");
+	ss << '.' << std::setfill('0') << std::setw(3) << ms.count();
+	return ss.str();
 }
