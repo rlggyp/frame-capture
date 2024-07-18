@@ -25,12 +25,18 @@ make
 #### Run the Program:
 ```bash
 ./frame_capture <camera_id> <output_directory>
-   ```
-|Key|Description|
-|---|---|
-|`s`| capture the current frame.|
-|`w`| write configuration settings to YAML file.|
-|`ESC`| exit the program.|
+```
+
+<div align="center">
+
+| Key  | Description                                      |
+|------|--------------------------------------------------|
+| `r`  | Start/stop recording video.                      |
+| `s`  | Capture the current frame.                       |
+| `w`  | Write configuration settings to YAML file.       |
+| `ESC`| Exit the program.                                |
+
+</div>
 
 ## Contributing
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
